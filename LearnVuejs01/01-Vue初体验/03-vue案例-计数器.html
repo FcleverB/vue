@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h2>当前技术:{{counter}}</h2>
+    <!--
+        简单的增加减少操作可以,但是复杂的就不行了,比如点击时输出内容,或者点击的一些业务逻辑判断
+        v-on:click 中可以取到data中定义的数据
+    -->
+<!--    <button v-on:click="counter++">+</button>-->
+<!--    <button v-on:click="counter&#45;&#45;">-</button>-->
+
+<!--    <button v-on:click="add">+</button>-->
+<!--    <button v-on:click="sub">-</button>-->
+    <!-- 使用@Click  是v-on:click 的语法糖--简写-->
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:'#app',
+        data:{
+            counter:0
+        },
+        methods:{        //定义函数
+            add:function () {   //增加函数
+                //当前操作都在app对象中,所以用this进行引用
+                //如果直接写counter表示从全局中进行查找,即从当前<script>标签中查找,而此时并没有定义全局变量counter
+                this.counter++;
+            },
+            sub:function () {   //减少函数
+                this.counter--;
+            }
+        }
+    })
+
+    /**
+     * 原始方式
+     * 1. 拿button元素
+     * 2. 添加监听事件
+     */
+</script>
+</body>
+</html>

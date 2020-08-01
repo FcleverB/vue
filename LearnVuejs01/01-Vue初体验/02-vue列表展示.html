@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{movies}}  <!--显示内容为[ "雷神", "复仇者联盟", "生化危机", "阿甘正传" ]-->
+    <hr/>
+    <ur>
+        <li>{{movies[0]}}</li>
+        <li>{{movies[1]}}</li>
+        <li>{{movies[2]}}</li>
+        <li>{{movies[3]}}</li>
+    </ur>
+    <hr/>
+    <ur>
+        <li v-for="item in movies">{{item}}</li>
+    </ur>
+</div>
+
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: {
+            movies:['雷神','复仇者联盟','生化危机','阿甘正传']    //展示列表,使用数组保存
+        }
+    })
+</script>
+</body>
+</html>

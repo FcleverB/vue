@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}<br/>
+        姓名:{name}}
+    </div>
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+        /*
+        *   之所以能够使用new Vue(对象),是因为vue.js中已经存在了类似于如下的定义
+        *     且需要传递一个对象参数,该对象可以挂载界面元素
+        *       function Vue(对象){
+        *
+        *       }
+        *   比如 我在js中定义了一个
+        *       function Person(){
+        *       }
+        *       那么我就可以使用new Person()
+        * */
+        //也可以使用变量来接收创建的对象  比如ES6语法中 let(定义变量) const(定义常量)
+        //编程范式:声明式编程
+        const app = new Vue({
+            el: '#app',      //用于挂载要管理的元素,这里将div元素传递给Vue实例,交给Vue管理
+            data:{          //定义数据,数据可以在被管理的元素中回显
+                message:'你好啊',   //在被管理元素中使用{{message}}就可以显示
+                name:"Fclever"
+            }
+        })
+        /**
+         * 原始JS的做法(编程范式:命令式编程)
+         * 1. 创建div元素,设置id属性
+         * 2. 定义一个变量交message
+         * 3. 将message变量放在前面的div元素中显示
+         */
+    </script>
+</body>
+</html>
