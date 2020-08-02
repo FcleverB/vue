@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  //1.一旦给const修饰的标识符赋值之后,不可修改
+  const name = 'fc';
+  name = 'fancheng';    //直接就报错了,信息:尝试改变常量值或者只读值
+  //2.const修饰的标识符时,必须同时赋值
+  const sex;  //报错信息:没有初始化的const变量值是不被允许的
+  //3.常量的含义是指向的对象不能修改,但是可以改变对象内部属性
+  const obj = {
+    name: 'fancheng',
+    age: 18
+  }
+  obj = {};  //不可以
+  obj.age = 22; //可以修改const对象的属性,但是不能改变指向的对象
+</script>
+</body>
+</html>

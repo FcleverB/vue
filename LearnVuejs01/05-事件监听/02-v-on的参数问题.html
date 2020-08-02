@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--1.事件调用的方法没有参数-->
+  <button @click="btnClick1()">无参带括号</button><br/>
+  <button @click="btnClick1">无参无括号</button><br/>
+  <!--
+    2.事件定义时,方法本身需要一个参数
+        调用方法时,如果没有省略小括号,但是没有传递参数,那么方法形参默认为undefined
+        调用方法时,如果省略了小括号, 那么vue会将浏览器默认生成的event事件对象作为参数传递
+                形参为[object MouseEvent],那么此时实际上方法形参写成event更形象
+  -->
+  <button @click="btnClick2('有一参带括号')">有一参带括号</button><br/>
+  <button @click="btnClick2">无一参不带括号</button><br/>
+  <!--
+      3. 事件定义时,方法有多个参数
+          - 如果不需要event对象,则直接正常调用即可
+          - 如果需要event对象,则可以通过$event在指定位置将event参数传入
+          - 直接调用方法,不加括号,则vue默认将event对象传递给第一个参数
+  -->
+  <button @click="btnClick3('fancheng',21)">多个参数不需要event</button><br/>
+  <button @click="btnClick4('fancheng',21,$event)">多个参数需要event</button><br/>
+  <!--下面这种写法的话,默认把event当成一个变量或者方法去匹配-->
+<!--  <button @click="btnClick4('fancheng',21,event)">多个参数需要event</button><br/>-->
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVue'
+    },
+    methods: {
+      btnClick1(){
+        console.log('不含参数的方法');
+      },
+      btnClick2(event){
+        console.log('含有一个mess参数'+event);
+      },
+      btnClick3(name,age){
+        console.log('姓名:'+name+' '+'年龄:'+age);
+      },
+      btnClick4(name,age,event){
+        console.log('姓名:'+name+' '+'年龄:'+age+' '+'event对象:'+event);
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

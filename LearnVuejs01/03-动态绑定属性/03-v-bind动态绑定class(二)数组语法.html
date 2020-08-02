@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组语法</title>
+</head>
+<body>
+
+<div id="app">
+  <!--数组语法会直接将数组中的内容全部作为class值-->
+  <h2 :class="['active','line']">{{message}}</h2>
+  <!--数组语法同样可以和原始class属性共存-->
+  <h2 class="titile" :class="['active','line']">{{message}}</h2>
+  <!--使用变量解析-->
+  <h2 class="titile" :class="[active,line]">{{message}}</h2>
+  <!--使用methods绑定-->
+  <h2 class="titile" :class="getClass()">{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVue',
+      active: 'active',
+      line: 'line'
+    },
+    methods:{
+      getClass:function () {
+        return ['active','line']
+        // return [this.active,this.line]
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

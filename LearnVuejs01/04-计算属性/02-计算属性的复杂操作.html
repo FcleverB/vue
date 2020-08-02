@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  图书总价格:{{totalPrice}}
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      books:[
+        {id: 110,name: 'Unix',price: 11},
+        {id: 120,name: 'Java',price: 66},
+        {id: 130,name: 'Python',price: 33},
+        {id: 140,name: 'Linux',price: 44}
+      ]
+    },
+    computed:{
+      totalPrice:function () {
+        // let sum = 0;
+        // for(let i=0;i<this.books.length;i++){
+        //   sum += this.books[i].price;
+        // }
+        // return sum;
+             // 下面是ES6语法
+        // let sum = 0;
+        // for(let i in this.books){
+        //   sum += this.books[i].price;
+        // }
+        // return sum;
+        let sum=0;
+        for(let book of this.books){
+          sum += book.price;
+        }
+        return sum;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

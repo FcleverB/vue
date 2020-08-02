@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--URL为写死状态-->
+<!--  <img src="https://cn.vuejs.org/images/logo.png" alt="">-->
+  <!--错误的做法:这里不可以使用Mustache语法-->
+<!--  <img src="{{imgURL}}" alt="">-->
+  <!--正确做法:使用v-bind指令-->
+  <img v-bind:src="imgURL" alt=""><br/>
+  <a v-bind:href="aURL">百度一下</a>
+  <hr/>
+  <!--语法糖写法  推荐-->
+  <img :src="imgURL" alt=""><br/>
+  <a :href="aURL">百度一下</a>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVue',
+      imgURL: 'https://cn.vuejs.org/images/logo.png',
+      aURL: 'http://www.baidu.com'
+    }
+  })
+</script>
+
+</body>
+</html>

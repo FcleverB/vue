@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  {{counter}}<br/>
+  <!--1. 点击事件-->
+<!--  <button v-on:click="counter++">+</button>-->
+  <button v-on:click="add">+</button>
+  <!-- @ 是v-on的语法糖 -->
+  <button @click="sub">-</button>
+
+  <!--2. 其他事件也可以  v-on:xxx  -->
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      counter: 0
+    },
+    methods: {
+      //ES5语法
+      // add:function () {
+      //   this.counter++;
+      // }
+      //下面使用的是ES6语法
+      add(){
+        this.counter++;
+      },
+      sub(){
+        this.counter--;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

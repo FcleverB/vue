@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>全名:{{fullName}}</h2>
+  <h2>全名2:{{fullName}}</h2>
+  <hr/>
+  <h2>全名:{{getFullName()}}</h2>
+  <h2>全名2:{{getFullName()}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstName: 'cheng',
+      lastName: 'fan'
+    },
+    methods: {
+      getFullName: function () {
+        console.log("调用了getFullName方法")
+        return this.firstName+' '+this.lastName
+      }
+    },
+    computed: {
+      //下面这种方式是计算属性的简写形式
+      // fullName:function () {
+      //   return this.firstName+' '+this.lastName
+      // },
+      //下面是完整形式
+      fullName: {
+        //setter方法一般都用不到,一般都不写
+        set: function (newValue) {
+          console.log('.....',newValue);
+          const names = newValue.split(' ');
+          this.firstName = names[0];
+          this.lastName = names[1];
+        },
+        get:function () {
+          console.log('调用getter方法');
+          return this.firstName+' '+this.lastName;
+        }
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>style对象语法</title>
+</head>
+<body>
+
+<div id="app">
+  <!--原始形式-->
+  <h2 style="font-size: 10px">{{message}}</h2>
+<!--  <h2 :style="{key(css属性名):value(属性值)}">{{message}}</h2>-->
+  <!-- 驼峰式
+          属性值如果不加单引号,则表示为变量,会从数据中查找对应变量值
+              但是像  50px 这种声明方式是不满足变量要求的(数字不能开头)
+          属性值增加单引号,则表示为值,直接赋值给对应属性
+  -->
+  <h2 :style="{fontSize:'20px'}">{{message}}</h2>
+  <!-- 短横线连接  加  单引号-->
+  <h2 :style="{'font-size':'30px'}">{{message}}</h2>
+  <!--变量形式  当做变量引用-->
+  <h2 :style="{'font-size':font}">{{message}}</h2>
+  <h2 :style="{'font-size':fsize+'px',color: hcolor}">{{message}}</h2>
+
+  <!--methods方式-->
+  <h2 :style="getStyle()">{{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVue',
+      font: '30px',
+      fsize: 100,
+      hcolor: 'red',
+      mecolor: 'green'
+    },
+    methods: {
+      getStyle:function () {
+        return {'font-size':this.fsize+'px',color: this.mecolor}
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

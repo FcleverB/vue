@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .movice{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<!--
+  作业需求:
+      点击列表中的某一项,则将该项的文字编程红色
+
+      没做出来
+-->
+<div id="app">
+  <ur>
+    <!--什么东西有多条数据,就写在哪里,因为遍历的就是该元素-->
+    <li v-for="(item,index) in movies" v-on:click="change(index)">{{item}}</li>
+  </ur>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      movies:['海王','海尔兄弟','火影忍者','进击的巨人']
+    },
+    methods: {
+      change:function (index) {
+        alert(index);
+      }
+    }
+  })
+</script>
+
+</body>
+</html>
