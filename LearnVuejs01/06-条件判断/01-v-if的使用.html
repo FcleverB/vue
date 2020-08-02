@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--
+    v-if 传递一个Boolean值,可以是变量
+  -->
+<!--  <h2 v-if="true">-->
+  <h2 v-if="isShow">
+    <span>abc</span>
+    <span>abc</span>
+    <span>abc</span>
+    <span>abc</span>
+  </h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVue',
+      isShow: false
+    }
+  })
+</script>
+
+</body>
+</html>

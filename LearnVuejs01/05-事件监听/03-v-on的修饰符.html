@@ -7,9 +7,34 @@
 <body>
 
 <div id="app">
+  <!-- 下面这种情况,在点击button的时候也会触发div的点击事件---事件冒泡-->
+<!--  <div @click="divClick">-->
+<!--    <button @click"btnClick">按钮</button>-->
+<!--  </div>-->
+  <!-- .stop:停止冒泡-->
   <div @click="divClick">
-    <button @click="btnClick">按钮</button>
+    <button @click.stop="btnClick">按钮</button>
   </div>
+  <!-- .prevent:阻止默认行为
+      在form表单中,一般都会创建一个type=submit的input元素,点击后即可提交表单数据到action
+      但是某些情况下,我们不想通过action去向后台提交数据,希望在submit处使用一个点击事件来跳转
+      这时候就需要阻止submit的默认行为
+  -->
+  <form action="baidu">
+    <input type="submit" value="提交" @click.prevent="submitClick">
+  </form>
+  <!-- .{keyCode | keyAlias} 监听键盘的键的点击
+            keyup 键抬起
+            keydown 键按下
+            keypress  键常按压
+        修饰符 enter  表示回车键
+  -->
+<!--  <input type="text" @keyup="keyUp">-->
+  <input type="text" @keyup.enter="keyUp"><br/>
+  <!-- .once  只在第一次调用时是触发事件-->
+  <button @click.once="onceButton">onceButton</button><br/>
+  <!-- 按下回车,且只有第一次触发-->
+  <input type="text" @keyup.enter.once="onceInput">
 </div>
 
 <script src="../js/vue.js"></script>
@@ -25,6 +50,18 @@
       },
       divClick(){
         console.log('divClick');
+      },
+      submitClick(){
+        console.log('submitClick');
+      },
+      keyUp(){
+        console.log('keyUp');
+      },
+      onceButton(){
+        console.log('onceButton');
+      },
+      onceInput(){
+        console.log('onceInput');
       }
     }
   })

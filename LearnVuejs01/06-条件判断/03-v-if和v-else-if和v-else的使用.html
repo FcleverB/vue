@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--v-if  v-else   v-else-if-->
+<!--  <p v-if="score>=90">优秀</p>-->
+<!--  <p v-else-if="score >=80">良好</p>-->
+<!--  <p v-else-if="score >=60">及格</p>-->
+<!--  <p v-else>不及格</p>-->
+
+  <!--使用计算属性实现  更建议这一点,逻辑判断不要在页面中编写-->
+  <h2>{{scoreLevel}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVue',
+      score: 92
+    },
+    computed: {
+      scoreLevel(){
+        let result = '';
+        if (this.score >= 90){
+          result = '优秀';
+        }else if (this.score >= 80){
+          result = '良好';
+        }else if(this.score >= 60){
+          result = '及格';
+        }else{
+          result = '不及格';
+        }
+        return result;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>
