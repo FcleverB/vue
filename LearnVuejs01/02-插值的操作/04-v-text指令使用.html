@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <!-- v-text 不够灵活,{{}}可以和其他数据进行简单拼接或者其他操作
+      v-text 只能输出数据内容,而且在标签内填写的内容会被覆盖
+  -->
+  <h2 v-text="message">dd</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs'
+    }
+  })
+</script>
+</body>
+</html>

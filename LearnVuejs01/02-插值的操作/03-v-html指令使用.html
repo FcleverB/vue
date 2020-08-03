@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>未经处理的html代码:{{url}}</h2>
+  <!--使用v-html需要指定要转换的  数据-->
+  <h2 v-html="url">使用v-html处理后:{{url}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs',
+      url: "<a href='www.baidu.com'>百度</a>"
+    }
+  })
+</script>
+</body>
+</html>

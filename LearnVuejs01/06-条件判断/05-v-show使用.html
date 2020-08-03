@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-if="show">v-if为true {{message}}</h2>
+  <h2 v-show="show">v-show为true {{message}}</h2>
+  <hr/>
+  <h2 v-if="notShow">v-if为false {{message}}</h2>
+  <h2 v-show="notShow">v-show为false {{message}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVue',
+      show: true,
+      notShow: false
+    }
+  })
+</script>
+
+</body>
+</html>
