@@ -5,6 +5,34 @@
   <title>Title</title>
 </head>
 <body>
+<div id="app">
+<!--  <input type="text" v-model="message">-->
+  <!--实现原理如下：
+  -->
+  <!--
+    :value == v-bind:value  可以将data中的数据绑定到input内容中
+    @input == v-on:input 是Input内部的一个事件
+  -->
+<!--  <input type="text" :value="message" @input="valueChange">-->
+  <input type="text" :value="message" @input="message = $event.target.value">
+  {{message}}
+</div>
 
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs'
+    },
+    methods: {
+      //event可以获取到input中的一些信息
+      valueChange(event){
+        //拿到event中保存的input的内容，实时更新message数据
+        this.message = event.target.value;
+      }
+    }
+  })
+</script>
 </body>
 </html>

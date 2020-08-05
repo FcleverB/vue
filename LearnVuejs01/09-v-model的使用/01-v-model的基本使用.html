@@ -6,7 +6,10 @@
 </head>
 <body>
 <div id="app">
-  {{message}}
+  <!--双向绑定：修改页面中内容会影响数据的内容，修改数据的内容会影响页面显示的内容
+    之前的Mustache语法，就不能实现反向绑定---修改页面中对应内容，不会影响原数据
+  -->
+  <input type="text" v-model="message">
 </div>
 
 <script src="../js/vue.js"></script>
