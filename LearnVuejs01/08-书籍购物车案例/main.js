@@ -63,10 +63,14 @@ const app = new Vue({
       //   sum += this.books[i].price * this.books[i].count;
       // }
       // let sum=0;
-      for(let book of this.books){
-        sum += book.price * book.count;
-      }
-      return sum;
+      // for(let book of this.books){
+      //   sum += book.price * book.count;
+      // }
+      // return sum;
+      //遍历books是一个数组，内部每个元素是一个对象
+      return this.books.reduce(function (preValue,book) {
+        return preValue+book.price;
+      },0);
     }
   }
 })
@@ -144,7 +148,7 @@ const nums = [10,20,111,222,444,40,50];
 //   return preValues + currentValue;
 // },0)
 
-let total = nums.filter(n => n<100).map(n => n * 2).reduce((pre,n) => pre+n)
+// let total = nums.filter(n => n<100).map(n => n * 2).reduce((pre,n) => pre+n)
 
 
 
