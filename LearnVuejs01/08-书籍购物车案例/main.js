@@ -136,13 +136,15 @@ const nums = [10,20,111,222,444,40,50];
  * 第四次：preValue=140，currentValue=100
  * 最终返回值240
  */
-let total = nums.filter(function (n) {
-  return n<100;
-}).map(function (n) {
-  return n * 2;
-}).reduce(function (preValues,currentValue) {
-  return preValues + currentValue;
-},0)
+// let total = nums.filter(function (n) {
+//   return n<100;
+// }).map(function (n) {
+//   return n * 2;
+// }).reduce(function (preValues,currentValue) {
+//   return preValues + currentValue;
+// },0)
+
+let total = nums.filter(n => n<100).map(n => n * 2).reduce((pre,n) => pre+n)
 
 
 
