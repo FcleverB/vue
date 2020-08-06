@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--  <my-cpn></my-cpn>-->
+<!--  <my-cpn></my-cpn>-->
+  <!--以下为app的局部组件-->
+  <cpn></cpn>
+  <cpn></cpn>
+</div>
+<hr/>
+<div id="app2">
+<!--  <my-cpn></my-cpn>-->
+<!--  <my-cpn></my-cpn>-->
+  <!--以下为app的局部组件,app2中无法使用,
+  查看网页源代码的话,只会看到无法被解析的cpn标签-->
+  <cpn></cpn>
+  <cpn></cpn>
+</div>
+
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  //1.创建组件构造器
+  const cpnC = Vue.extend({
+    template: `
+      <div>
+        <h2>我是标题</h2>
+        <p>我是内容..哈哈哈哈哈</p>
+      </div>
+    `
+  });
+  //2.注册组件
+  //默认创建的是全局组件,意味着可以在多个vue的实例下面使用
+  // Vue.component('my-cpn',cpnC);
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs'
+    },
+    components: {
+      //第一个为使用局部组件时所需要的标签名,第二个为组件名
+      cpn: cpnC
+    }
+  });
+  const app2 = new Vue({
+    el: '#app2',
+    data: {
+      message: 'HelloVueJs'
+    }
+  })
+</script>
+</body>
+</html>

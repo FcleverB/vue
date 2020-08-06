@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--3.使用组件-->
+  <my-con1></my-con1>
+  <my-con2></my-con2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  //1.创建组件构造器
+  // const cong = Vue.extend({
+  //   template:`
+  //     <div>
+  //       <h2>组件</h2>
+  //     </div>
+  //   `
+  // });
+  //2.注册组件
+  // Vue.component('my-con',cong);
+  /**
+   * 全局组件注册的语法糖的形式
+   * 内部帮我们使用了extend进行构建
+   */
+  Vue.component('my-con1',{
+    template:`
+      <div>
+        <h2>全局组件</h2>
+      </div>
+    `
+  });
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs'
+    },
+    /**
+     * 局部组件注册的语法糖的形式
+     * 内部帮我们使用了extend进行构建
+     */
+    components: {
+      'my-con2': {
+        template:`
+          <div>
+            <h2>局部组件</h2>
+          </div>
+        `
+      }
+    }
+  })
+</script>
+</body>
+</html>

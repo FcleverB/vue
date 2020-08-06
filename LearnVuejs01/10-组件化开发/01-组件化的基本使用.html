@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--3.使用组件-->
+  <my-cpn></my-cpn>
+</div>
+
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  //ES6 语法  `  可以换行
+
+  //1.创建组件构造器对象   组件只能生效于vue管理的实例中
+  //这里用到的Vue对象,是vue.js中提供的
+  const cpnC = Vue.extend({
+    template: `
+      <div>
+        <h2>我是标题</h2>
+        <p>我是内容,哈哈哈哈</p>
+      </div>
+    `
+  });
+  //2.注册组件
+  //第一个参数:组件的标签名   第二个:构造的组件
+  Vue.component('my-cpn',cpnC);
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs'
+    }
+  })
+</script>
+</body>
+</html>
