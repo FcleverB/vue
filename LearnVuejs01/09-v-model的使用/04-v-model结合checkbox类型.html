@@ -5,6 +5,56 @@
   <title>Title</title>
 </head>
 <body>
+<div id="app">
+  <!--label标签的for属性表名 label与哪个元素绑定
+        有label for的时候,比如多选框,既可以点击多选图标,也可以点击文字
+  -->
+  <!--1.checkbox单选框 方式---对应一个Boolean值  -->
+<!--  <label for="agree">-->
+<!--    <input type="checkbox" id="agree" v-model="isAgree">同意协议-->
+<!--  </label>-->
+<!--  <br/>-->
+<!--  <h2>当前选择是:{{isAgree}}</h2>-->
+<!--  <button :disabled="!isAgree">下一步</button>-->
+  <!--2.checkbox 多选框---以数组形式存储
+        与单选框类似,当v-model绑定的变量与value值相同时,会默认选中
+  -->
+  <!--这里的数据是写死的-->
+  <input type="checkbox" value="篮球" v-model="hobbies">篮球
+  <input type="checkbox" value="足球" v-model="hobbies">足球
+  <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+  <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+  <h2>您选择的爱好是:{{hobbies}}</h2>
 
+  <!--值绑定,  :value的形式,将内容自动填充-->
+  <label v-for="item in originHobbies" :for="item">
+    <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{item}}
+  </label>
+</div>
+
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs',
+      isAgree: false,
+      hobbies: [],
+      originHobbies: ['篮球','羽毛球','足球','乒乓球']
+    }
+  })
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,9 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Select 下拉框</title>
 </head>
 <body>
+<div id="app">
+  <!--1.select选择单个值
+        v-model的数据与value值相对应
+  -->
+  <select name="fru" v-model="fruit">
+    <option value="苹果" >苹果</option>
+    <option value="香蕉" >香蕉</option>
+    <option value="雪梨" >雪梨</option>
+  </select>
+  <h2>您选择的是:{{fruit}}</h2>
+  <!--2.select选择多个值-->
+  <select name="fru" v-model="fruits" multiple>
+    <option value="苹果" >苹果</option>
+    <option value="香蕉" >香蕉</option>
+    <option value="雪梨" >雪梨</option>
+  </select>
+  <h2>可以按住,您选择的是:{{fruits}}</h2>
+</div>
 
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs',
+      fruit: '香蕉',  //单选框
+      fruits: []     //多选框
+    }
+  })
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

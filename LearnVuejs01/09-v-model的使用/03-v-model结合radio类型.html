@@ -5,6 +5,53 @@
   <title>Title</title>
 </head>
 <body>
+<div id="app">
+  <!--
+    单选框特点：
+      name属性相同后，只会选择一个
+      type=radio表示单选框
+      name中为实际传递的值,向数据库中保存时一般保存的是数字,如男--1  女--2
+      当v-model绑定的是同一个变量的时候,name属性可以不写,同样可以实现互斥效果
+    设置单选组的默认值的使用,只要v-model中默认存在的属性与value值能匹配就能默认选中
+  -->
+  <!--label标签的for属性表名 label与哪个元素绑定
+        有label for的时候,比如多选框,既可以点击多选图标,也可以点击文字
+  -->
+  <label for="male">
+<!--    <input type="radio" id="male" name="sex" value="男" v-model="sex">男-->
+    <input type="radio" id="male" value="男" v-model="sex">男
+  </label>
+  <label for="female">
+<!--    <input type="radio" id="female" name="sex" value="女" v-model="sex">女-->
+    <input type="radio" id="female" value="女" v-model="sex">女
+  </label>
+  <br/>
+</div>
 
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs',
+      sex: '男'
+    }
+  })
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
