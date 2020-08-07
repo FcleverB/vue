@@ -5,6 +5,57 @@
   <title>Title</title>
 </head>
 <body>
+<div id="app">
+  <!--根据注册的组件,创建了三个组件实例
+        三个组件实例并不会共享data数据,因为data是一个函数
+        每次创建新的实例,都会调用data函数一次,返回值每次都是新建的
+  -->
+  <my-cal></my-cal>
+  <my-cal></my-cal>
+  <my-cal></my-cal>
+</div>
+<!--需求:组件化实现计数器-->
+<template id="cal">
+  <!--
+    发现一个问题,模板必须放在一个div下面,否则出现以下错误信息
+    Component template should contain exactly one root element.
+    组件模板应该包含一个根元素。模版里只能有一个主div（根对象），如果有多个元素，请用一个主div包含他们
+  -->
+  <div>
+    <h2>当前计数:{{count}}</h2>
+    <button @click="decrement()" :disabled="count<=0">-</button>
+    <button @click="increment()">+</button>
+  </div>
+</template>
 
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  //注册组件--一并进行了创建
+  Vue.component('my-cal',{
+    template: '#cal',
+    //定义为函数的data,每次返回数据都是新的
+    //如果想要使用的组件都显示相同的值,
+    // 则可以将返回值定义为一个全局属性,然后将全局属性作为data函数返回值返回即可
+    data(){
+      return {
+        count: 0
+      }
+    },
+    methods: {
+      increment(){
+        this.count++;
+      },
+      decrement(){
+        this.count--;
+      }
+    }
+  })
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs'
+    }
+  })
+</script>
 </body>
 </html>
