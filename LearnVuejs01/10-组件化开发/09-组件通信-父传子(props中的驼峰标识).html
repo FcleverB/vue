@@ -5,6 +5,57 @@
   <title>Title</title>
 </head>
 <body>
+<div id="app">
+  <cpn :c-info="info" :child-by-message="message"></cpn>
+</div>
+<template id="cpn">
+  <!--
+    子组件中如何包含很多标签的话,只能存在一个根元素
+  -->
+  <div>
+    <h2>{{cInfo}}</h2>
+    <h2>{{childByMessage}}</h2>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  //局部组件
+  const cpn = {
+    template: '#cpn',
+    props: {
+      //这里的cinfo为啥不能写成cInfo驼峰式?
+      /**
+       * 这里可以写驼峰,但是问题在于最终父组件传递给子组件的数据
+       * 需要经过v-bind去绑定,而v-bind不支持驼峰命名的形式
+       * 如果非要写成驼峰形式需要在大写字母转成小写并且在该字母前用短横线连接-
+       */
+      cInfo: {
+        type: Object,
+        default() {
+          return {};
+        }
+      },
+      childByMessage: {
+        type: String,
+        default: '测试驼峰'
+      }
+    }
+  };
 
+  const app = new Vue({
+    el: '#app',
+    data: {
+      info: {
+        name: 'coder',
+        age: 21,
+        sex: '男'
+      },
+      message: '测试驼峰生效'
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
 </body>
 </html>

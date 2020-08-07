@@ -5,6 +5,61 @@
   <title>Title</title>
 </head>
 <body>
+<div id="app">
+  <cpn :cmovies="movies" :cmessage="message"></cpn>
+</div>
 
+<template id="cpn">
+  <div>
+    <h2>子组件获取父组件数据</h2>
+    <p>{{cmovies}}</p>
+    <p>{{cmessage}}</p>
+    <ul v-for="item in cmovies">
+      <li>{{item}}</li>
+    </ul>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  //父传子   props
+  const cpn = {
+    template: '#cpn',
+    //props 有多种形式
+    //1.数组方式中保存内容可以看成是变量,
+    //    在Vue管理的实例中调用的时候进行数据绑定就可以了
+    // props: ['cmovies','cmessage']
+    //2.使用对象类型,还可以额外指定数据类型或者默认值
+    props: {
+      //1.类型限制
+      // cmovies: Array,
+      // cmessage: String
+      //2.默认值
+      cmessage: {
+        type: String,
+        default: '子组件中message默认值',
+        required: true  //是否为必须
+      },
+      //如果属性类型为对象或者数组类型,默认值必须是一个函数
+      cmovies: {
+        type: Array,
+        default(){
+          return []
+        }
+      }
+    }
+  }
+  //将Vue实例看成一个父组件
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs',
+      movies: ['a','b','c','d']
+    },
+    components: {
+      //子组件
+      cpn
+    }
+  })
+</script>
 </body>
 </html>
