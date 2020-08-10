@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn :cnum1="num1"
+       :cnum2="num2"
+       @num1change="num1change"
+       @num2change="num2change"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>props子传父后会改变:{{cnum1}}</h2>
+    <!--
+      使用v-model可以绑定到该子组件中的props中的属性值,但是这种方式不推荐使用
+      [Vue warn]:
+        Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders.
+          避免直接将一个prop属性进行转换,因为该值将会因为父组件传递的对应内容而发生变化
+        Instead, use a data or computed property based on the prop's value. Prop being mutated: "cnum1"
+          相反,建议使用一个基于该prop值创建一个data或者计算属性
+      简而言之,子组件中的props的值只能由父组件修改,值的变化取决于父组件传递的对应值,单向
+    -->
+<!--    <input type="text" v-model="cnum1">-->
+    <h2>data双向绑定:{{dnum1}}</h2>
+<!--    <input type="text" v-model="dnum1">-->
+    <!--分解v-model = :value+@input  实现更新父组件中的值-->
+    <input type="text" :value="dnum1" @input="num1Input">
+    <h2>props子传父后会改变:{{cnum2}}</h2>
+<!--    <input type="text" v-model="cnum2">-->
+    <h2>data双向绑定:{{dnum2}}</h2>
+<!--    <input type="text" v-model="dnum2">-->
+    <input type="text" :value="dnum2" @input="num2Input">
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      num1: 1,
+      num2: 0
+    },
+    methods: {
+      num1change(value){
+        /*默认传递的是String类型*/
+        // this.num1 = value1;
+        this.num1 = Number.parseInt(value);
+      },
+      num2change(value){
+        /*默认传递的是String类型*/
+        // this.num2 = value;
+        this.num2 = Number.parseInt(value);
+      }
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        props: {
+          cnum1: Number,
+          cnum2: Number
+        },
+        data(){
+          return {
+            dnum1: this.cnum1,
+            dnum2: this.cnum2
+          }
+        },
+        methods: {
+          num1Input(event){
+            this.dnum1 = event.target.value;
+            //发射事件   父组件接收后,可以处理对应值
+            this.$emit('num1change',this.dnum1);
+            //下一个需求,num2始终为num1 100倍
+            this.dnum2 = this.dnum1 * 100;
+            //发射事件改编父组件中的值,经过子组件的props之后,就会同步改编子组件的值
+            this.$emit('num2change',this.dnum2);
+          },
+          num2Input(event){
+            this.dnum2 = event.target.value;
+            //发射事件   父组件接收后,可以处理对应值
+            this.$emit('num2change',this.dnum2);
+            //下一个需求,num1始终为num2 百分之一
+            this.dnum1 = this.dnum2 / 100;
+            //发射事件改编父组件中的值,经过子组件的props之后,就会同步改编子组件的值
+            this.$emit('num1change',this.dnum1);
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>
