@@ -7,6 +7,8 @@
 <body>
 <div id="app">
   <cpn></cpn>
+  <cpn></cpn>
+  <cpn ref="three"></cpn>
   <button @click="btnClick">按钮</button>
 </div>
 <template id="cpn">
@@ -21,12 +23,31 @@
     },
     methods: {
       btnClick(){
-        console.log(this.$children);
+        //1. $children可以访问子组件对象
+        //对象中包含的数量不是看components属性中定义了多少个
+        //而是看app中使用了多少次
+        // console.log(this.$children);
+        //直接调用子组件中的方法
+        // for(let child of this.$children){
+        //   console.log("--------------")
+        //   this.$children[0].showMessage();
+        //   console.log(this.$children[0].name);
+        // }
+        //使用索引去获取指定组件的内容是不可取的，需求可能变化
+        //  后面可能导致指定的索引值并非目标值
+        // console.log(this.$children[2].name);
+
+        console.log(this.$refs.three.name);
       }
     },
     components: {
       cpn: {
         template: '#cpn',
+        data() {
+          return {
+            name: '我是子组件属性name'
+          }
+        },
         methods: {
           showMessage(){
             console.log('showMessage');

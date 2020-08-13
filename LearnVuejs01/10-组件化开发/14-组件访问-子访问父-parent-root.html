@@ -5,6 +5,61 @@
   <title>Title</title>
 </head>
 <body>
+<div id="app">
+  <cpn></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <div>我是子组件</div>
+    <button @click="btnClick">按钮</button>
+    <ccpn></ccpn>
+  </div>
+</template>
+<template id="ccpn">
+  <div>
+    <div>我是子组件的子组件</div>
+    <button @click="btnClick2">子组件的子组件按钮</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs'
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data(){
+          return {
+            name: "我是子组件中的name属性"
+          }
+        },
+        methods: {
+          btnClick(){
+            //访问父组件 $parent
+            console.log(this.$parent);
+          }
+        },
+        components: {
+          ccpn: {
+            template: '#ccpn',
+            methods: {
+              btnClick2(){
+                //获取父组件对象
+                console.log(this.$parent);
+                //获取父组件中的name属性
+                console.log(this.$parent.name);
 
+                console.log(this.$root);
+              }
+            }
+          }
+        }
+      },
+    }
+  })
+</script>
 </body>
 </html>
