@@ -5,6 +5,41 @@
   <title>Title</title>
 </head>
 <body>
-
+<!--
+  需求:使用插槽实现导航栏的显示
+      需要用到多个插槽
+-->
+<div id="app">
+  <!--这种方式向组件中传入值的话,会替换组件种template的所有非具名插槽-->
+  <cpn>
+    <button slot="left">左侧部分替换</button>
+    <button slot="center">中间部分替换</button>
+    <button slot="right">右侧部分替换</button>
+  </cpn>
+</div>
+<template id="cpn">
+  <div>
+    <!--
+      给插槽起名字之后,想要通过传入值来替换插槽中的内容,需要指定具体的插槽名称
+    -->
+    <slot name="left"><span>左边</span></slot>
+    <slot name="center"><span>中间</span></slot>
+    <slot name="right"><span>右边</span></slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'HelloVueJs'
+    },
+    components: {
+      cpn: {
+        template: '#cpn'
+      }
+    }
+  })
+</script>
 </body>
 </html>
