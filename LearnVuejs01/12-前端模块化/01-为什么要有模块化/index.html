@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+  1.项目组长
+  2.小明
+  3.小红
+-->
+<!--定义顺序会影响不同文件中的逻辑
+    这里的xiaohong.js中的flag覆盖了xiaoming中的flag
+    因此xiaomingtwo.js中的内容不会log输出
+-->
+<script src="main.js"></script>
+<script src="xiaoming.js"></script>
+<script src="xiaohong.js"></script>
+<script src="xiaomingtwo.js"></script>
+<script src="xiaohongtwo.js"></script>
+</body>
+</html>
