@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--不在引用CSS文件,如果有很多css文件岂不是都要引用
+        通过webpack的扩展来实现
+  -->
+</head>
+<body>
+<div id="app">
+</div>
+<!--使用CommonJS语法写的代码,没法直接在浏览器中解析-->
+<!--<script src="./src/main.js"></script>-->
+<!--
+  此时就可以借助于webpack对main.js进行打包,生成浏览器可以识别的文件
+  然后在index.html中引入该文件即可
+-->
+</body>
+</html>
