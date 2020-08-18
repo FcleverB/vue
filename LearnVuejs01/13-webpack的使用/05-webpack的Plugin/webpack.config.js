@@ -17,7 +17,7 @@ module.exports = {
     // __dirname是一个全局变量,保存着当前文件所在的文件路径,继续拼接一个字符串,最终形成一个路径
     path: path.resolve(__dirname, 'dist'),   //path必须要写绝对路径,否则会报错
     filename: 'bundle.js',
-    publicPath: 'dist/'   //涉及到url的内容打包之后都会到该目录下(实际是前面拼接该路径)
+    // publicPath: 'dist/'   //涉及到url的内容打包之后都会到该目录下(实际是前面拼接该路径)
   },
   module: {
     rules: [
@@ -81,7 +81,7 @@ module.exports = {
         //从当前目录开始查找
         template: 'index.html'
       }),
-      // new uglifyjswebpackplugin()
+      new uglifyjswebpackplugin()
   ],
   devServer: {
     contentBase: './dist',
