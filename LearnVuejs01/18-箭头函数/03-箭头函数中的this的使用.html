@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 箭头函数使用场景
+  // setTimeout(function () {
+  //   console.log(this) // 输出为Window对象
+  // },1000)
+  // setTimeout(() => {
+  //   console.log(this) // 输出为Window对象
+  //    //上一层的this就是window
+  // },1000)
+
+  /*
+  * 除了箭头函数之外,其他函数的this指向是:谁调用函数就指向谁
+  *   箭头函数this指向: 最近作用域中的this
+  *                   一层一层往上找,找到离自己最近的this,并指向它,查找层级如果在箭头函数中继续往上找
+  * */
+  // const obj = {
+  //   aaa() {
+  //     setTimeout(function () {
+  //       console.log(this) // 输出为Window对象
+  //     },1000)
+  //     setTimeout(() => {
+  //       console.log(this) // 输出为obj对象
+  //       // 向上一层查找this,正常来讲,我我们在aaa方法内使用console.log(this),输出的就是obj对象
+  //       // 所以说上一层中含有this,因此就指向它
+  //     },1000)
+  //   }
+  // }
+  // obj.aaa()
+
+  // 变化
+  const obj = {
+    aaa() {
+      setTimeout(function () {
+        setTimeout(function () {
+          console.log(this) // 输出为Window对象
+        },1000)
+        setTimeout(() => {
+          console.log(this) // 输出为Window对象  写在了function里面,上一层里面有window
+        },1000)
+      },1000)
+      setTimeout(() => {
+        setTimeout(function () {
+          console.log(this) // 输出为Window对象
+        },1000)
+        setTimeout(() => {
+          console.log(this) // 输出为obj对象
+        },1000)
+      },1000)
+    }
+  }
+  obj.aaa()
+</script>
+</body>
+</html>
