@@ -7,7 +7,12 @@
     <router-link to="/about" tag="button" replace>关于</router-link>
 <!--    <router-link to="/user/10086" tag="button" replace>用户</router-link>-->
     <router-link v-bind:to="'/user/'+userid" tag="button" replace>用户</router-link>
+<!--    <router-link :to="{-->
+<!--      path: '/profile/'+userid,-->
+<!--      query: {name: 'why',age: 18}-->
+<!--    }" tag="button">我的</router-link>-->
 <!--    <router-view></router-view>-->
+    <button @click="toProfile">我的</button>
     <!--
       <router-link>
         该标签是一个vue-router中已经内置的组件,它会被渲染成一个<a>标签
@@ -52,6 +57,12 @@ export default {
     //   // replace --> replaceState
     //   // this.$router.replace("/user")
     // }
+    toProfile() {
+      this.$router.push({
+        path: '/profile/'+this.userid,
+        query: {name: 'why',age: 18}
+      })
+    }
   }
 }
 </script>

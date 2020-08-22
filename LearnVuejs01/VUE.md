@@ -1278,19 +1278,66 @@
     - ![image-20200821180806322](https://gitee.com/FcleverSD/Typora/raw/master/img/20200821180806.png)
     - ![image-20200821180828540](https://gitee.com/FcleverSD/Typora/raw/master/img/20200821180828.png)
 
-#### 2.8 
+#### 2.8 打包文件的解析
 
-#### 2.8 
+- ![image-20200822072544656](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822072544.png)
 
-#### 2.8 
+#### 2.9 认识路由的懒加载
 
-#### 2.8 
+- ![image-20200822073506990](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822073507.png)
+- ![image-20200822073518534](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822073518.png)
 
-#### 2.8 
+#### 2.10 懒加载的使用方式
+
+- ![image-20200822074218758](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822074218.png)
 
 ### 3 vue-router嵌套使用
 
+#### 3.1 认识嵌套路由
+
+- ![image-20200822080907146](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822080907.png)
+
+#### 3.2 嵌套路由的实现
+
+- ![image-20200822080920363](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822080920.png)
+
+#### 3.3 嵌套路由默认路径
+
+- ![image-20200822080929581](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822080929.png)
+
 ### 4 vue-roter参数传递
+
+#### 4.1 准备工作
+
+- ![image-20200822090529702](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822090529.png)
+
+#### 4.2 传递参数的方式
+
+- ![image-20200822090540820](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822090540.png)
+
+#### 4.3 传递参数方式一:<router-link>
+
+- ![image-20200822090550884](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822090550.png)
+
+#### 4.4 传递参数方式二:js代码
+
+- ![](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822090605.png)
+
+#### 4.5 获取参数
+
+- ![image-20200822090638633](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822090638.png)
+
+#### 4.6 $route和$router
+
+- URI
+
+  - ```
+    URI = scheme:[//authority]path[?query][#fragment]
+    ```
+
+  - ![image-20200822092952043](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822092952.png)
+
+- ![image-20200822090706541](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822090706.png)
 
 ### 5 vue-router导航守卫
 
