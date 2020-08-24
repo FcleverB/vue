@@ -12,9 +12,28 @@
 <script>
   export default {
     name: "Home",
-    // created() {
-    //   document.title = '首页'
-    // }
+    data() {
+      return {
+        path: '/home/news'
+      }
+    },
+    created() {
+      console.log('created')
+    },
+    destroyed() {
+      console.log('destoryed')
+    },
+    // 当前路由处于活跃时执行
+    activated() {
+      this.$router.push(this.path)
+    },
+    // 当前路由不处于活跃的时候调用
+    deactivated() {
+    },
+    beforeRouteLeave(to,from,next){
+      this.path = this.$route.path
+      next()
+    }
   }
 </script>
 

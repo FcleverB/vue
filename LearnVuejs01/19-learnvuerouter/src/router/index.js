@@ -32,10 +32,10 @@ const routes = [
       /*
       * 子路由也可以配置默认路径
       * */
-      {
-        path: '/',
-        redirect: 'news'
-      },
+      // {
+      //   path: '/',
+      //   redirect: 'news'
+      // },
       {
         path: 'news',
         name: 'HomeNews',
@@ -90,7 +90,6 @@ router.beforeEach((to, from, next) => {
   // to:   目标跳转的路由  Route类型
   // 从from跳转到to
   document.title = to.matched[0].meta.title
-  console.log(to);
   // 在beforeEach中必须调用next()
   next()
 })

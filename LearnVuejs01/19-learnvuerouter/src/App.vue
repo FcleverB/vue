@@ -25,7 +25,9 @@
 <!--    <button @click="homeClick">首页</button>-->
 <!--    <button @click="aboutClick">关于</button>-->
 <!--    <button @click="userClick">用户</button>-->
-    <router-view></router-view>
+    <keep-alive>
+        <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 

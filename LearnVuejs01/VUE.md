@@ -1385,13 +1385,20 @@
 
 ### 6 keep-alive
 
-### 7 
+- ![image-20200824200441711](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824200441.png)
+- 默认情况下,路由匹配的视图组件都不会被缓存的,以Home.vue为例,当让问/home路由时,会在创建Home组件的时候调用created,当跳转到其他路由的时候,会调用destory方法
+  - ![image-20200824200554872](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824200554.png)
+- 使用keep-alive后,可以对这些视图组件进行缓存,就不会被反复创建销毁了
+- activated函数在路由处于活跃时调用,的activate的()当路由处于不活跃状态时调用,这两个函数必须结合keep-alive使用,如果所处组件没有被keep-alive包括,则不会生效
+- 使用include和exclude
+  - ![image-20200824204032062](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824204032.png)
+  - exclude中填写的内容,就是.Vue文件export导出时设置的name属性,并且分隔符逗号后面不能加空格
 
-### 8 
+### 7 TabBar
 
-### 9 
-
-### 10 
+- 创建项目
+  - ![image-20200824205211503](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824205211.png)
+- 
 
 ## 六丶Vuex详解
 
