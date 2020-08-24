@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 // import User from "../components/User";
 
 // 1.通过Vue.use(插件),安装插件-----任何插件都有这一步
+//      底层是执行了对应的   插件.install方法
 Vue.use(VueRouter)
 
 // 2.创建VueRouter对象
@@ -20,6 +21,9 @@ const routes = [
     name: 'Home',
     // component: Home
     component: () => import('../components/Home'),
+    meta: {
+      title: '首页'
+    },
     /*
     * 子路由的时候path前面不能加/  访问时会自动添加
     *     看弹幕有的人可以加,有的就不行,但是不加一定行,你明白了吧,fc
@@ -50,18 +54,27 @@ const routes = [
     path: '/about',
     name: 'About',
     // component: About
-    component: () => import('../components/About')
+    component: () => import('../components/About'),
+    meta: {
+      title: '关于'
+    }
   },
   {
     path: '/user/:id',  // 规定语法来拼接
     name: 'User',
     // component: User
-    component: () => import('../components/User')
+    component: () => import('../components/User'),
+    meta: {
+      title: '用户'
+    }
   },
   {
     path: '/profile/:id',
     name: 'Profile',
-    component: () => import('../components/Profile')
+    component: () => import('../components/Profile'),
+    meta: {
+      title: '我的'
+    }
   }
 ]
 const router = new VueRouter({
@@ -69,6 +82,22 @@ const router = new VueRouter({
   routes,
   mode: 'history',
   linkActiveClass: 'active'
+})
+// 导航守卫
+// 前置守卫   路由进入时调用
+router.beforeEach((to, from, next) => {
+  // from: 源路由  Route类型
+  // to:   目标跳转的路由  Route类型
+  // 从from跳转到to
+  document.title = to.matched[0].meta.title
+  console.log(to);
+  // 在beforeEach中必须调用next()
+  next()
+})
+
+// 后置钩子   路由离开时调用
+router.afterEach((to, from) => {
+
 })
 
 // 3.将router对象传入到Vue实例中

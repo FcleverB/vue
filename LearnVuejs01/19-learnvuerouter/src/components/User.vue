@@ -18,6 +18,9 @@
         message: 'aaaa'
       }
     },
+    // created() {
+    //   document.title = '用户'
+    // },
     computed: {
       userId() {
         // $route获取的是当前活跃的路由对象

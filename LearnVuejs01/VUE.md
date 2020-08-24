@@ -1339,7 +1339,49 @@
 
 - ![image-20200822090706541](https://gitee.com/FcleverSD/Typora/raw/master/img/20200822090706.png)
 
+- 下载vue-router的源码可以看到Router中注册的组件以及$router和$route的定义
+
+  - ![image-20200824081520158](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824081520.png)
+    - 这里面的_router实际上就是main.js中创建Vue实例的时候配置的router,具体_router赋值如下
+    - ![image-20200824082257280](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824082257.png)
+  - 通过vue-router的源码可以看到,Router中注册了两个全局组件,因此我们可以直接使用router-link,router-view
+    - ![image-20200824075826437](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824075826.png)
+
 ### 5 vue-router导航守卫
+
+- 什么是导航守卫
+  - vue-router提供的导航守卫主要用来`监听路由的进入和离开的`
+  - vue-router提供了beforeEach和afterEach的钩子函数,它们会在路由即将改变前和改变后触发
+- 需求
+  - ![image-20200824090100605](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824090100.png)
+  - ![image-20200824090155182](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824090155.png)
+  - ![image-20200824090201741](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824090201.png)
+  - 上面这种方式并不好,可以使用导航守卫来解决
+- 全局前置守卫
+  - 在route/index.js中使用
+    - ![image-20200824090932629](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824090932.png)
+    - 进入beforeEach查看源码
+      - ![image-20200824091005429](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824091005.png)
+    - 进入NavigationGuard查看,可以看到需要向beforeEach中传递一个带三个参数的函数才可以
+      - ![image-20200824091029998](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824091030.png)
+      - ![image-20200824091933937](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824091933.png)
+    - 在对应路由下添加一个meta属性(元数据),一般来讲子路由显示的标题都和父路由一致,所以只需要给父路由添加一下就行了
+      - ![image-20200824092252284](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824092252.png)
+      - ![image-20200824092304854](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824092304.png)
+    - 测试时,发现首页的标题为undefined,其他的正常
+      - ![image-20200824093219854](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824093219.png)
+      - ![image-20200824093037709](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824093037.png)
+    - 原因其实很明显,因为访问首页/home时,由于设置了默认显示新闻news信息,但是我们设置的meta只在/home路由上,所以访问不到,通过log输出一下to,看一下输出内容
+      - ![image-20200824093005710](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824093005.png)
+      - 从to的输出内容可以看到matched中保存了当前活跃的路由信息,并且数组的保存顺序也是从父-->子,因此我们可以直接获取matched[0].meta中的内容作为标题即可,因为前面提到过同一页面中标题应该以父路由为准
+      - ![image-20200824094416324](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824094416.png)
+- 全局后置钩子   afterEach()
+  - ![image-20200824094646916](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824094646.png)
+  - 不需要调用next()方法
+- 其他类型的守卫
+  - ![image-20200824095324961](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824095325.png)
+  - 路由独享守卫
+    - ![image-20200824095719868](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824095719.png)
 
 ### 6 keep-alive
 
