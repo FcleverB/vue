@@ -1398,9 +1398,77 @@
 
 - 创建项目
   - ![image-20200824205211503](https://gitee.com/FcleverSD/Typora/raw/master/img/20200824205211.png)
+- 一些知识点
+  - 使用slot的时候,不建议将v-if,class等这样的属性定义在slot中,因为slot后面会被真实内容所替换,如果真实内容中没有对应的class等可能无法生效
+  - 文件的组织关系
+    - src/components:一般存储公共的一些组件
+    - src/views/xxx:分别存放不同内容的组件,比如首页/分类/购物车/我的,划分为不同模块,这样就可以多人开发
+
+#### 8 路径别名
+
+- 在代码中引入一些资源,经常要写../../等这些的路径来获取内容,这是很不方便的
+- 可以对文件夹起别名,后面就可以直接使用文件夹,然后就会在对应文件夹内找到相关资源
+- 文件后缀的处理
+  - 在build/webpack.base.conf.js中,extensions中使用数组保存了一些文件后缀,因此后续在使用这些文件后缀的时候,就不需要写后缀了
+    - ![image-20200826114805329](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826114805.png)
+- 同样可以注意到resolve中还有一个属性为alias这个就是用来其别名的
+  - 这里的@就表示src目录  比如此时要去src/index.vue,那么就可以直接写@index.vue
+  - ![image-20200826162124969](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826162125.png)
+  - 修改完配置后,要记得重启
+  - 引入资源时,需要加~号
+    - ![image-20200826162633126](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826162633.png)
+
+## 六丶Promise(ES6)
+
+### 1 Promise介绍
+
+- ![image-20200826181437499](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826181437.png)
+- ![image-20200826181449187](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826181449.png)
+- ![image-20200826195451007](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826195451.png)
+- ![image-20200826181612535](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826181612.png)
+- 创建Promise对象后,传递resolve,reject两个函数对象
+  - 在网络请求正常时使用resolve(xxx)函数可以对其进行处理,实际处理位置在then(xxx)当中
+  - 网络请求出现异常时,可以使用reject(xxx)函数对其进行处理,实际处理位置在catch(xxxx)当中
+- 其中,reject是可选的,如果用不到可以不写
+
+### 2 定时器的异步事件
+
+- ![image-20200826181903680](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826181903.png)
+- ![image-20200826181919752](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826181919.png)
+
+### 2 Promise三种状态
+
+- ![image-20200826182022810](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826182022.png)
+- ![image-20200826182027818](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826182027.png)
+- ![image-20200826182032688](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826182032.png)
+
+### 3 Promise另外处理方式
+
+- ![](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826185123.png)
+
+### 4 Promise链式调用
+
+- 正常处理
+  - ![image-20200826200114516](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826200114.png)
+  - ![image-20200826200122808](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826200122.png)
+  - ![image-20200826200143502](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826200143.png)
+- 出现异常
+  - ![image-20200826200201749](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826200201.png)
+  - ![image-20200826200211465](C:\Users\Fclever\AppData\Roaming\Typora\typora-user-images\image-20200826200211465.png)
+
+### 5 Promise的all方法
+
 - 
 
-## 六丶Vuex详解
+### 6 
+
+### 7 
+
+### 8 
+
+### 9 
+
+## 七丶Vuex详解
 
 ### 1 
 
@@ -1422,7 +1490,7 @@
 
 ### 10 
 
-## 七丶网络封装 
+## 八丶网络封装 
 
 ### 1 
 
@@ -1444,7 +1512,7 @@
 
 ### 10 
 
-## 八丶项目实战
+## 九丶项目实战
 
 ### 1 
 
@@ -1466,7 +1534,7 @@
 
 ### 10 
 
-## 九丶项目部署
+## 十丶项目部署
 
 ### 1 
 
@@ -1488,7 +1556,7 @@
 
 ### 10 
 
-## 十丶VueJS原理
+## 十一丶VueJS原理
 
 ### 1 
 
