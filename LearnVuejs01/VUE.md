@@ -1,5 +1,3 @@
-
-
 # VueJS知识量化  
 
 ## 一丶邂逅VueJS--Vue和Vuejs没有区别
@@ -1456,39 +1454,120 @@
   - ![image-20200826200201749](https://gitee.com/FcleverSD/Typora/raw/master/img/20200826200201.png)
   - ![image-20200826200211465](C:\Users\Fclever\AppData\Roaming\Typora\typora-user-images\image-20200826200211465.png)
 
-### 5 Promise的all方法
-
-- 
-
-### 6 
-
-### 7 
-
-### 8 
-
-### 9 
-
 ## 七丶Vuex详解
 
-### 1 
+### 1 Vuex介绍--------共享
 
-### 2 
+- ![image-20200827074541218](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827074541.png)
 
-### 3 
+### 2 管理什么状态
 
-### 4 
+- ![image-20200827074611286](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827074611.png)
 
-### 5 
+### 3 Vuex插件安装
 
-### 6 
+- cli2中Vuex是没有安装的,因此需要单独安装插件
+  - 更高级的脚手架会自动安装
+- npm install vuex --save
+- 对于Vuex的配置文件,约定俗成放在src/store目录下
+  - ![image-20200827094759713](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827094759.png)
+- 然后在main.js中配置
+  - ![image-20200827094913733](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827094913.png)
+- 经过上述配置后,Vue默认会调用Vue.prototype.$store = store,后续就可以用$store获取相关数据了
 
-### 7 
+### 4 状态管理
 
-### 8 
+- ![image-20200827104607909](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104608.png)
+- ![image-20200827104635981](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104636.png)
+- ![image-20200827104646970](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104647.png)
+- ![image-20200827104657203](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104657.png)
+- ![image-20200827104705846](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104705.png)
+- ![image-20200827104714359](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104714.png)
+- ![image-20200827104722674](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104722.png)
+- ![image-20200827104730580](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104730.png)
+- ![image-20200827104741021](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827104741.png)
 
-### 9 
+### 5 Vuex核心概念
 
-### 10 
+- 几个比较核心的概念
+  - State
+  - Getters
+  - Mutation
+  - Action
+  - Module
+
+### 6 State
+
+- 核心:  存放状态相关信息
+
+- 单一状态树
+- ![image-20200827134520643](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827134520.png)
+
+### 7 Getters
+
+#### 7.1 基本使用
+
+- ![image-20200827141102048](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827141102.png)
+
+#### 7.2 作为参数和传递参数
+
+- ![image-20200827142514862](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827142514.png)
+- ![image-20200827142527741](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827142527.png)
+
+### 8 Mutation
+
+#### 8.1 状态更新
+
+- ![image-20200827145807702](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827145807.png)
+
+#### 8.2 传递参数
+
+- ![image-20200827145824327](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827145824.png)
+
+#### 8.3 提交风格
+
+- 普通提交方式
+  - ![image-20200827151308690](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827151308.png)
+  - ![image-20200827151259707](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827151259.png)
+- 特殊提交风格
+  - ![image-20200827151251278](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827151251.png)
+
+#### 8.4 响应规则
+
+- 一开始被定义的属性默认就会被加入到响应式系统中,而响应式系统会监听属性的变化,当属性发生变化的时候会通知所有组件中所有使用到该属性的地方,让界面刷新
+
+- ![image-20200827155829214](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827155829.png)
+
+#### 8.5 常量类型--概念
+
+- ![image-20200827172145397](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827172145.png)
+
+#### 8.6 常量类型--代码
+
+- ![image-20200827172158677](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827172158.png)
+
+#### 8.7 同步函数
+
+- ![image-20200827172350319](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827172350.png)
+
+### 9 Action
+
+#### 9.1 定义
+
+- ![image-20200827172402523](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827172402.png)
+- ![image-20200827172409778](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827172409.png)
+
+#### 9.2 分发
+
+- ![image-20200827172421969](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827172422.png)
+
+#### 9.3 返回Promise
+
+- ![image-20200827175505485](https://gitee.com/FcleverSD/Typora/raw/master/img/20200827175842.png)
+
+### 10 Module
+
+- 
 
 ## 八丶网络封装 
 
