@@ -1,5 +1,14 @@
 <template>
   <div id="app">
+    <h2>----------------APP中内容:演示Module</h2>
+    <h2>{{$store.state.a.name}}</h2>
+    <button @click="btnUpdateName">修改Module   name</button>
+    <h2>getters:  {{$store.getters.fullname}}</h2>
+    <h2>getters:  {{$store.getters.fullname2}}</h2>
+    <h2>getters:  {{$store.getters.fullname3}}</h2>
+    <button @click="asyncUpdateName">异步修改</button>
+
+    <br/>
     <button @click="updateInfo">修改信息</button>
     <h2>{{$store.state.info}}</h2>
     <h2>-------------APP</h2>
@@ -74,7 +83,12 @@
           count
           // count: count
         })
-
+      },
+      btnUpdateName() {
+        this.$store.commit('updateName','wu')
+      },
+      asyncUpdateName() {
+        this.$store.dispatch('aUpdateName')
       },
       addStudent(){
         const stu = {id: 114,name: 'why4',age: 25}

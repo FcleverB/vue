@@ -1567,29 +1567,36 @@
 
 ### 10 Module
 
-- 
+- ![image-20200828080217498](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828080217.png)
+- ![image-20200828085222449](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828085222.png)
+- ![image-20200828085237495](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828085237.png)
+- ![image-20200828090131727](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828090131.png)
+
+### 11 项目结构
+
+- ![image-20200828090138989](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828090139.png)
 
 ## 八丶网络封装 
 
-### 1 
+### 1 常见的网络请求模块,优缺点对比
 
-### 2 
+- 
 
-### 3 
+### 2 JSONP的原理和封装
 
-### 4 
+#### 2.1 JSONP原理回顾
 
-### 5 
+#### 2.2 JSONP请求封装
 
-### 6 
+### 3 axios的内容详解
 
-### 7 
+#### 3.1 认识axios网络模块
 
-### 8 
+#### 3.2 发送基本请求
 
-### 9 
+#### 3.3 axios创建实例
 
-### 10 
+#### 3.4 axios拦截器的使用
 
 ## 九丶项目实战
 
