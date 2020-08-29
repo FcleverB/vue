@@ -1571,6 +1571,7 @@
 - ![image-20200828085222449](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828085222.png)
 - ![image-20200828085237495](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828085237.png)
 - ![image-20200828090131727](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828090131.png)
+- 其实数组也可以解构,形式   [arr1,arr2] = arrs  ,数组的解构是按照顺序来进行对应的
 
 ### 11 项目结构
 
@@ -1580,23 +1581,96 @@
 
 ### 1 常见的网络请求模块,优缺点对比
 
-- 
+- ![image-20200828094124395](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828094124.png)
 
-### 2 JSONP的原理和封装
+### 2 JSONP的原理和封装(未详细说)
 
-#### 2.1 JSONP原理回顾
+#### 2.1 JSONP原理回顾(未详细说)
 
-#### 2.2 JSONP请求封装
+#### 2.2 JSONP请求封装(未详细说)
 
 ### 3 axios的内容详解
 
 #### 3.1 认识axios网络模块
 
-#### 3.2 发送基本请求
+- ![image-20200828094951494](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828094951.png)
+- ![image-20200828102108940](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828102109.png)
 
-#### 3.3 axios创建实例
+#### 3.2 发送get请求
 
-#### 3.4 axios拦截器的使用
+- 创建项目并安装axios
+  - npm install axios
+- 请求测试数据获取地址
+  - http://123.207.32.32:8000/home/multidata   目前老师这个服务器不支持post请求
+  - 额外测试网址:http://httpbin.org/#/HTTP_Methods
+- 测试一
+  - ![image-20200828114702885](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828114702.png)
+  - ![image-20200828112840661](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828112840.png)
+- 测试二
+  - ![image-20200828114711105](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828114711.png)
+  - 根据老师提供的接口的话,可以在get请求中使用params来附带请求参数
+  - ![image-20200828114805186](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828114805.png)
+
+#### 3.3 发送并发请求
+
+- ![image-20200828141647785](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828141647.png)
+- ![image-20200828141637146](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828141637.png)
+- 查看一下返回结果,可以看到结果是一个数组,里面就是包含了两次请求的结果
+  - ![image-20200828141838297](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828141838.png)
+- 从浏览器输出结果可以看出,result实际以数组的形式保存了两次请求的返回结果,那么我们在代码中如何分别获取两个请求的对象呢?
+  - ![image-20200828142753818](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828142753.png)
+- 上面的方式固然可以拿到不同请求的对象,但是axios还提供了另外的方式供我们使用
+- 上述代码中使用then接收返回结果时,由于是两次请求,得到的内容就是一个数组对象,我们可以使用axios.spread将数组展开为两个对象,这样就更方便对两个对象进行处理了
+  - ![image-20200828143237209](https://gitee.com/FcleverSD/Typora/raw/master/img/20200828143237.png)
+
+#### 3.4 全局配置
+
+- 两个全局配置
+  - 一般开发中都不会使用全局配置,因为一些请求的路径等参数会有所不同
+  - ![image-20200829074122052](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829074122.png)
+  - ![image-20200829074150271](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829074150.png)
+- 常见配置
+  - ![image-20200829074202191](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829074202.png)
+
+#### 3.5 axios创建实例
+
+- 前面使用的axios实际上并没有创建实例,而是使用了一个全局的实例
+  - ![image-20200829074311713](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829074311.png)
+  - ![image-20200829074321760](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829074321.png)
+- ![image-20200829082051139](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829082051.png)
+- ![image-20200829082106084](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829082106.png)
+
+#### 3.6 axios的封装
+
+- 为啥要封装
+  - 对于网络请求来说,很多组件中都需要用到axios,如果不进行封装,那么在每个组件内都需要导入axios,然后发送请求,造成代码冗余,并且多个组件对axios都存在依赖,依赖性太强了
+  - 如果以后axios不再维护,且出现bug也不修复了,那么项目内所有相关代码就需要修改
+  - ![image-20200829090901670](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829090901.png)
+  - ![image-20200829090918543](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829090918.png)
+- 如何封装
+  - 创建单独的配置文件,对axios进行配置封装,在需要使用axios发送请求的组件中使用单独的文件,这样以后只需要管理单独的配置文件即可,如果以后axios不再维护了,那么以后只需要改变封装的配置文件即可
+- 步骤
+  - ![image-20200829084512490](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829084512.png)
+  - ![image-20200829091009605](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829091009.png)
+  - ![image-20200829091017963](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829091018.png)
+- 优化步骤
+  - ![image-20200829091713239](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829091713.png)
+  - ![image-20200829091720318](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829091720.png)
+- 进一步优化方案
+  - ![image-20200829093143426](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829093143.png)
+- 最终版
+  - ![image-20200829093637242](C:\Users\Fclever\AppData\Roaming\Typora\typora-user-images\image-20200829093637242.png)
+
+#### 3.7 axios拦截器的使用
+
+- 拦截器中基本使用
+  - ![image-20200829105620227](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829105620.png)
+  - ![image-20200829105727905](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829105728.png)
+  - 上图响应的第一个参数改为res,因为响应嘛,写成result更好
+- 拦截器的作用
+  - ![image-20200829110521650](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829110521.png)
+  - ![image-20200829110534294](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829110534.png)
+  - ![image-20200829110550999](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829110551.png)
 
 ## 九丶项目实战
 
