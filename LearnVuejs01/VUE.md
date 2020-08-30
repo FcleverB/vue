@@ -1674,25 +1674,105 @@
 
 ## 九丶项目实战
 
-### 1 
+### 1 项目开发
 
-### 2 
+#### 1.1 搭建项目环境
 
-### 3 
+- 创建项目
+  - ![image-20200819133304005](https://gitee.com/FcleverSD/Typora/raw/master/img/20200819133304.png)
+  - 这里选择手动配置,方便我们了解有哪些内容需要配置
+  - ![image-20200819134208142](https://gitee.com/FcleverSD/Typora/raw/master/img/20200819134208.png)
+  - 选择Vue2版本,3版本还只是预览版
+    - ![image-20200819134307965](https://gitee.com/FcleverSD/Typora/raw/master/img/20200819134308.png)
+  - 选择你打算将Babel,ESLint等一些配置存放在哪个位置,老师推荐选择第一个<专门的配置文件>
+    - ![image-20200819134612625](https://gitee.com/FcleverSD/Typora/raw/master/img/20200819134612.png)
+  - 此时vue会问你是否将刚刚的几步配置保存一个历史记录,方便后续直接使用,如果保存的话,后续就会出现在please pick a preset中,这里选择yes,然后会让你给你刚刚的配置起个名字,当然是fclever,同时也会告诉你,自定义的配置保存在了哪里
+    - ![image-20200819134959262](https://gitee.com/FcleverSD/Typora/raw/master/img/20200819134959.png)
+    - ![image-20200819140121486](https://gitee.com/FcleverSD/Typora/raw/master/img/20200819140121.png)
+  - 脚手架3中,启动项目的方式为npm run serve  
+    - 回顾  脚手架2的时候为npm run dev
+    - ![image-20200819141128366](https://gitee.com/FcleverSD/Typora/raw/master/img/20200819141128.png)
 
-### 4 
+#### 1.2 划分目录结构
+
+- ![image-20200829135555018](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829135555.png)
+
+#### 1.3 css文件引入
+
+- 不同的浏览器对一些标签的渲染效果不相同,因此需要使用CSS文件对样式做统一处理
+- 重置样式表网址:https://github.com/necolas/normalize.css
+- ![image-20200829140715589](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829140715.png)
+- 在App.vue中引入base.css即可
+  - ![image-20200829141303557](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829141303.png)
+
+#### 1.4 vue.config.js  ||  .editorconfig
+
+- 在项目开发中一般都会给一些路径配置一些别名,这样在引用组件或者资源的时候就很方便
+- vue.config.js
+  - ![image-20200829150859732](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829150859.png)
+  - 这样在App.vue中的引入就可以修改一下啦
+    - ![image-20200829143114082](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829143114.png)
+- .editorconfig
+  - ![image-20200829143239851](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829143239.png)
+
+#### 1.5 tabbar引入和项目模块划分
+
+- 拷贝tabbar
+  - 
+- 安装vue-router
+  - ![image-20200829145422084](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829145422.png)
+  - ![image-20200829145459357](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829145459.png)
+  - ![image-20200829150021397](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829150021.png)
+  - ![image-20200829150357717](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829150357.png)
+- main.js中挂载router
+  - ![image-20200829145726660](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829145726.png)
+- 在App.vue中使用
+  - ![image-20200829150514167](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829150514.png)
+- 启动项目测试
+  - ![image-20200829150932404](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829150932.png)
+
+#### 1.6 小图标的修改 ||  路径问题
+
+- 小图标的修改
+  - ![image-20200829151218383](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829151218.png)
+  - 换掉原图片即可
+  - ![image-20200829151308996](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829151309.png)
+  - 可以注意到vue引入图标的语法是使用了类似JSP中的语法base_url
+    - ![image-20200829152303702](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829152303.png)
+  - 这里我们可以执行npm run build,查看最终打包后是通过什么语法引入的
+    - 由于打包后内容进行了丑化,ctrl+f格式化一下就可以
+    - ![image-20200829152614993](https://gitee.com/FcleverSD/Typora/raw/master/img/20200829152615.png)
+
+### 2 额外npm的包
+
+-  npm install axios --save
+- 
+
+### 3 首页开发
+
+- 对导航栏的封装
+  - 首先认识到导航栏在多个组件中都会使用到,因此可以封装在一个公共组件中,并且导航栏经常出现在各种项目里面
+  - 其次对导航栏的内容进行划分,主要分为三个部分,左中右,并且每个部分的内容是因组件不同而发生变化的,因此可以使用插槽slot,并且是具名插槽,这样方便各个组件将合适的内容插入到对应位置
+  - 对于slot来说,一般都需要设置样式,但是不能直接给slot设置样式,因为插槽就相当于一个占位,后续是被真实内容直接进行替换的,因此可以在每个slot外层套一个div,然后对div设置样式即可
+
+- 对网络请求的封装
+  - 存在一个request.js,里面导出了一个可以用来发送网络请求的函数,在函数内定义了axios的实例
+  - 对于不同的组件的内的请求,分别创建了单独的文件,如Home.js,在每个单独的组件内,引用全局request.js文件中的函数去发送网络请求即可.这样的话,就避免了多个组件都直接使用全局request.js文件,而是直接使用对应的JS文件(Home.js)即可,这样的话可以实现对于单独组件的网络请求的分别管理,方便后期维护
+- 轮播图
+  - 在GitHub上面有已经封装好的一些UI组件库-----后续毕设用得到
+  - 关于轮播图的封装,一般涉及整体的组件封装和各个轮播图内容的封装
+  - 同时在首页Home.vue的代码中,轮播图的代码如果比较多的时候,可以进一步进行封装,减少首页代码量
+- 
+
+### 4 详情页开发
+
+### 5 购物车开发
 
 ### 5 
 
 ### 6 
 
 ### 7 
-
-### 8 
-
-### 9 
-
-### 10 
 
 ## 十丶项目部署
 
