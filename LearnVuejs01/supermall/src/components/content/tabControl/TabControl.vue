@@ -27,8 +27,12 @@
       }
     },
     methods: {
+      // 监听首页商品分类栏目的点击事件
       tabClick(index) {
         this.currentIndex = index
+        /*因为点击不同分类会更新对应分类的信息，因此需要向父组件传递点击分类栏目的信息*/
+        /*将所选分类栏目的index传递给父组件*/
+        this.$emit('tabClick',index)
       }
     }
   }

@@ -13,111 +13,11 @@
     <!--本周流行-->
     <home-feature-view></home-feature-view>
     <!--首页分类  流行   新款   精选-->
-    <tab-control :titles="['流行','新款','精选']"></tab-control>
+    <tab-control class="tab-control"
+                 :titles="['流行','新款','精选']"
+                 @tabClick="tabClick"></tab-control>
     <!--首页商品数据列表-->
-<!--    <goods-list :goods="goods['pop'].list"></goods-list>-->
-    <ul>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-      <li>小白</li>
-    </ul>
+    <goods-list :goods="this.showGoods"></goods-list>
   </div>
 </template>
 
@@ -154,7 +54,14 @@
           'pop':  {page: 0,list: []},
           'new': {page: 0,list: []},
           'sell': {page: 0,list: []}
-        }
+        },
+        // 当前分类类别
+        currentType : 'pop'
+      }
+    },
+    computed: {
+      showGoods() {
+        return this.goods[this.currentType].list
       }
     },
     created() {
@@ -167,6 +74,26 @@
       this.getHomeGoods('sell')
     },
     methods: {
+      /*
+        * 事件监听相关
+        * */
+      // 切换当前分类数据
+      tabClick(index) {
+        switch (index) {
+          case 0:
+            this.currentType = 'pop'
+            break
+          case 1:
+            this.currentType = 'new'
+            break
+          case 2:
+            this.currentType = 'sell'
+            break
+        }
+      },
+      /*
+      * 网络请求相关方法
+      * */
       getHomeMultidata() {
         getHomeMultidata().then(res => {
           // 注意这里的返回值已经是result.data了,因为拦截器对响应做了处理
@@ -186,7 +113,6 @@
         // 请求当前页码加一后的数据
         const page = this.goods[type].page + 1
         getHomeGoods(type,page).then(res => {
-          console.log(res)
           // 下面这种语法可以将  list数组追加在goods中
           // this.goods[type].list.push([1,2,3])这种方式不可以，会直接把数组当成一个元素，而不会解析
           this.goods[type].list.push(...res.data.list)
@@ -222,5 +148,6 @@
     */
     position: sticky;
     top: 44px;
+    z-index: 9;
   }
 </style>
